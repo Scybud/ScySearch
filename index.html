@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Scybud Search</title>
+<title>ScySearch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -17,7 +17,7 @@
 <div class="topbar">
   <div class="logo">
     <div class="mark">S</div>
-    <span>Scybud <span class="searchWord" style="color:var(--accent)">Search</span></span>
+    <span>Scy<span class="searchWord" style="color:var(--accent)">Search</span></span>
   </div>
   <div class="topbar-actions">
     <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark theme"></button>
@@ -27,7 +27,7 @@
 <!-- HOME -->
 <div class="home-wrap" id="homeWrap">
   <div class="home-mark">S</div>
-  <h1 class="home-title">Scybud Search</h1>
+  <h1 class="home-title">ScySearch</h1>
   <p class="home-sub">Find things across the whole build, fast.</p>
 
   <div class="search-shell">
@@ -37,15 +37,25 @@
       <button class="clear-btn" id="homeClear" aria-label="Clear search">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
-      <button class="mic-btn" aria-label="Search by voice">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></svg>
-      </button>
+      <button class="btn primary" id="searchBtn"><svg 
+  width="16" 
+  height="16" 
+  viewBox="0 0 24 24" 
+  fill="none" 
+  stroke="currentColor" 
+  stroke-width="2" 
+  stroke-linecap="round" 
+  stroke-linejoin="round"
+>
+  <path d="M5 12h14"></path>
+  <path d="M13 5l6 7-6 7"></path>
+</svg>
+</button>
     </div>
     <div class="suggest-panel" id="homeSuggest"></div>
   </div>
 
   <div class="search-actions">
-    <button class="btn primary" id="searchBtn">Search</button>
     <button class="btn" id="feelingLuckyBtn">I'm Feeling Lucky</button>
   </div>
 

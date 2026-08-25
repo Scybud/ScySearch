@@ -1,7 +1,7 @@
 :root {
-  --accent: #21d6b5;
-  --accent-dim: #16a78c;
-  --accent-soft: rgba(33, 214, 181, 0.12);
+  --accent: #DF2935;
+  --accent-dim: #a91a23;
+  --accent-soft: rgb(223, 42, 54, 0.12);
   --amber-soft: rgba(139, 127, 255, 0.12);
   --amber: #f0b255;
   --danger: #f0655a;
@@ -21,9 +21,9 @@
   --text-primary: #14161b;
   --muted: #5c6373;
   --text-secondary: #9096a3;
-  --accent: #0ea98a;
-  --accent-dim: #0c8a70;
-  --accent-soft: rgba(14, 169, 138, 0.1);
+  --accent: #DF2935;
+  --accent-dim: #DF2935;
+  --accent-soft: rgb(223, 41, 53, 0.1);
   --amber-soft: rgba(108, 93, 211, 0.1);
   --amber: #c8811f;
   --shadow-panel: 0 16px 40px rgba(20, 22, 27, 0.1);
@@ -177,7 +177,7 @@ button {
   background: var(--input-bg);
   border: 1px solid var(--border-primary);
   border-radius: var(--radius-lg);
-  padding: 14px 18px;
+  padding: 0 var(--space-xs) 0 calc(var(--space-sm) + 4px);
   position: relative;
   transition:
     border-color 0.2s,
@@ -198,6 +198,7 @@ button {
 }
 .search-input {
   flex: 1;
+    padding: var(--space-md);
   background: none;
   border: none;
   outline: none;
@@ -223,15 +224,20 @@ button {
   color: var(--text-primary);
   background: var(--surface-primary);
 }
-.mic-btn {
-  background: none;
+#searchBtn {
+  background: var(--accent);
   border: none;
   color: var(--text-secondary);
-  padding: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   display: flex;
 }
-.mic-btn:hover {
-  color: var(--accent);
+#searchBtn:hover {
+  color: var(--accent-dim);
 }
 
 .suggest-panel {
@@ -298,7 +304,7 @@ button {
 }
 .btn.primary {
   background: var(--accent-soft);
-  color: var(--accent);
+  color: var(--text-secondary);
   border-color: transparent;
 }
 
@@ -373,11 +379,11 @@ button {
   position: relative;
 }
 .results-search-shell .search-bar {
-  padding: 10px 16px;
   border-radius: var(--radius-md);
 }
 .results-search-shell .search-input {
   font-size: 14px;
+  padding: var(--space-sm);
 }
 
 .tabs {
@@ -674,12 +680,11 @@ button {
     border-radius: 18px;
   }
   .search-actions {
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
   }
-  .btn {
-    width: 100%;
-  }
+  
   .results-wrap {
     padding: 0 16px 40px;
   }
