@@ -7,6 +7,9 @@ const SOURCE_META = {
   stackoverflow: { label: "Stack Overflow", letter: "S", color: "#F0B255" },
   github: { label: "GitHub", letter: "G", color: "#8B7FFF" },
   mdn: { label: "MDN", letter: "M", color: "#21D6B5" },
+  hackernews: { label: "Hacker News", letter: "H", color: "#F0655A" },
+  reddit: { label: "Reddit", letter: "R", color: "#5B9FEF" },
+  devto: { label: "DEV", letter: "D", color: "#4ADE80" },
 };
 
 function escapeHtml(s) {
@@ -26,6 +29,15 @@ function metaLine(result) {
   }
   if (result.source === "mdn") {
     return "MDN Reference";
+  }
+  if (result.source === "hackernews") {
+    return `${m.points ?? 0} points · ${m.comments ?? 0} comments`;
+  }
+  if (result.source === "reddit") {
+    return `r/${m.subreddit ?? ""} · ${m.upvotes ?? 0} upvotes · ${m.comments ?? 0} comments`;
+  }
+  if (result.source === "devto") {
+    return `${m.reactions ?? 0} reactions${m.tags ? ` · ${m.tags}` : ""}`;
   }
   return "";
 }
