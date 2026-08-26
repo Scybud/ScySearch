@@ -177,6 +177,7 @@ button {
   border-radius: var(--radius-lg);
   padding: 0 var(--space-xs) 0 calc(var(--space-sm) + 4px);
   position: relative;
+    overflow: hidden;
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
@@ -233,6 +234,9 @@ button {
   justify-content: center;
   align-items: center;
   display: flex;
+
+  position: absolute;
+  right: var(--space-xs);
 }
 #searchBtn:hover {
   color: var(--accent-dim);
@@ -305,7 +309,9 @@ button {
   color: var(--text-secondary);
   border-color: transparent;
 }
-
+.btn.primary:hover {
+  background: var(--accent-dim);
+}
 .trending-wrap {
   margin-top: 44px;
   text-align: center;
