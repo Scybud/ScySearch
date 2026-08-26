@@ -3,13 +3,31 @@ import { state } from "./state.js";
 import { initTheme } from "./theme.js";
 import { renderTrendingChips } from "./trending.js";
 import { wireSuggestions } from "./suggestions.js";
-import { runSearch, goHome, feelingLucky, changeTab, changePage } from "./search.js";
+import {
+  runSearch,
+  goHome,
+  feelingLucky,
+  changeTab,
+  changePage,
+} from "./search.js";
 
 initTheme();
 renderTrendingChips(runSearch);
 
-wireSuggestions(dom.homeInput, dom.homeSuggest, dom.homeClear, dom.homeSearchBar, runSearch);
-wireSuggestions(dom.resultsInput, dom.resultsSuggest, dom.resultsClear, dom.resultsSearchBar, (q) => runSearch(q));
+wireSuggestions(
+  dom.homeInput,
+  dom.homeSuggest,
+  dom.homeClear,
+  dom.homeSearchBar,
+  runSearch,
+);
+wireSuggestions(
+  dom.resultsInput,
+  dom.resultsSuggest,
+  dom.resultsClear,
+  dom.resultsSearchBar,
+  (q) => runSearch(q),
+);
 
 dom.logos.forEach((logo) => logo.addEventListener("click", goHome));
 dom.feelingLuckyBtn.addEventListener("click", feelingLucky);
@@ -34,7 +52,10 @@ dom.resultsInput.addEventListener("keydown", (e) => {
 document.addEventListener("keydown", (e) => {
   if (e.key === "/" && document.activeElement.tagName !== "INPUT") {
     e.preventDefault();
-    (dom.homeWrap.classList.contains("hidden") ? dom.resultsInput : dom.homeInput).focus();
+    (dom.homeWrap.classList.contains("hidden")
+      ? dom.resultsInput
+      : dom.homeInput
+    ).focus();
   }
 });
 

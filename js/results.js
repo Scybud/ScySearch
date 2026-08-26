@@ -86,10 +86,7 @@ export function renderResults() {
 
   const totalPages = Math.max(1, Math.ceil(results.length / RESULTS_PER_PAGE));
   state.page = Math.min(state.page, totalPages);
-  const pageResults = results.slice(
-    (state.page - 1) * RESULTS_PER_PAGE,
-    state.page * RESULTS_PER_PAGE,
-  );
+  const pageResults = results.slice((state.page - 1) * RESULTS_PER_PAGE, state.page * RESULTS_PER_PAGE);
 
   if (tab === "images") {
     renderImageResults(pageResults);
@@ -106,11 +103,7 @@ export function renderResults() {
 function renderTextResults(pageResults) {
   dom.resultsList.innerHTML = pageResults
     .map((r) => {
-      const sm = SOURCE_META[r.source] || {
-        label: r.source,
-        letter: "?",
-        color: "#5B9FEF",
-      };
+      const sm = SOURCE_META[r.source] || { label: r.source, letter: "?", color: "#5B9FEF" };
       return `
       <div class="result-card fade-in">
         <div class="result-top">
@@ -133,11 +126,7 @@ function renderImageResults(pageResults) {
   // is a separate link so a click on the image never fights with navigation.
   dom.resultsList.innerHTML = pageResults
     .map((r) => {
-      const sm = SOURCE_META[r.source] || {
-        label: r.source,
-        letter: "?",
-        color: "#5B9FEF",
-      };
+      const sm = SOURCE_META[r.source] || { label: r.source, letter: "?", color: "#5B9FEF" };
       const imageUrl = r.meta?.imageUrl || "";
       if (!imageUrl) return "";
       return `
@@ -151,21 +140,22 @@ function renderImageResults(pageResults) {
     })
     .join("");
 
-  dom.resultsList
-    .querySelectorAll("img.scybud-magnify")
-    .forEach((img) => magnifyImg(img));
+  dom.resultsList.querySelectorAll("img.scybud-magnify").forEach((img) => magnifyImg(img));
 }
 
 function renderVideoResults(pageResults) {
+  const PROVIDER_LABEL = { youtube: "YouTube", vimeo: "Vimeo" };
   dom.resultsList.innerHTML = pageResults
     .map((r) => {
       const thumb = r.meta?.thumbnail || "";
       const channel = r.meta?.channel || "";
+      const provider = PROVIDER_LABEL[r.meta?.provider] || "Video";
       return `
       <a class="video-card fade-in" href="${r.url}" target="_blank" rel="noopener">
         <div class="video-thumb-wrap">
           <img src="${thumb}" alt="${escapeHtml(r.title)}" loading="lazy">
           <span class="video-play">▶</span>
+          <span class="video-provider">${provider}</span>
         </div>
         <div class="video-card-body">
           <div class="video-card-title">${escapeHtml(r.title)}</div>
