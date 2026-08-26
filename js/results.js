@@ -2,6 +2,7 @@ import { dom } from "./dom.js";
 import { state } from "./state.js";
 import { getKnowledgePanel } from "./knowledge.js";
 import { RESULTS_PER_PAGE } from "./config.js";
+import { magnifyImg } from "https://ui.scybud.com/js/ui.js";
 
 const SOURCE_META = {
   stackoverflow: { label: "Stack Overflow", letter: "S", color: "#F0B255" },
@@ -43,6 +44,7 @@ function metaLine(result) {
 }
 
 export function renderLoading() {
+  dom.resultsList.classList.remove("image-grid", "video-grid");
   dom.resultsList.innerHTML = `<div class="no-results fade-in"><div class="big">Searching…</div></div>`;
   dom.resultStats.textContent = "Searching…";
   dom.pagination.innerHTML = "";
@@ -50,6 +52,7 @@ export function renderLoading() {
 }
 
 export function renderError(message) {
+  dom.resultsList.classList.remove("image-grid", "video-grid");
   dom.resultsList.innerHTML = `
     <div class="no-results fade-in">
       <div class="big">Search failed</div>
@@ -65,7 +68,10 @@ export function setStats(count, tookMs) {
 }
 
 export function renderResults() {
-  const { results, query } = state;
+  const { results, query, tab } = state;
+
+  dom.resultsList.classList.toggle("image-grid", tab === "images");
+  dom.resultsList.classList.toggle("video-grid", tab === "videos");
 
   if (!results.length) {
     dom.resultsList.innerHTML = `
@@ -80,11 +86,31 @@ export function renderResults() {
 
   const totalPages = Math.max(1, Math.ceil(results.length / RESULTS_PER_PAGE));
   state.page = Math.min(state.page, totalPages);
-  const pageResults = results.slice((state.page - 1) * RESULTS_PER_PAGE, state.page * RESULTS_PER_PAGE);
+  const pageResults = results.slice(
+    (state.page - 1) * RESULTS_PER_PAGE,
+    state.page * RESULTS_PER_PAGE,
+  );
 
+  if (tab === "images") {
+    renderImageResults(pageResults);
+  } else if (tab === "videos") {
+    renderVideoResults(pageResults);
+  } else {
+    renderTextResults(pageResults);
+  }
+
+  renderKnowledgePanel(query);
+  renderPagination(totalPages);
+}
+
+function renderTextResults(pageResults) {
   dom.resultsList.innerHTML = pageResults
     .map((r) => {
-      const sm = SOURCE_META[r.source] || { label: r.source, letter: "?", color: "#5B9FEF" };
+      const sm = SOURCE_META[r.source] || {
+        label: r.source,
+        letter: "?",
+        color: "#5B9FEF",
+      };
       return `
       <div class="result-card fade-in">
         <div class="result-top">
@@ -100,9 +126,54 @@ export function renderResults() {
       </div>`;
     })
     .join("");
+}
 
-  renderKnowledgePanel(query);
-  renderPagination(totalPages);
+function renderImageResults(pageResults) {
+  // Image itself triggers the Scybud UI lightbox (magnifyImg), the meta row
+  // is a separate link so a click on the image never fights with navigation.
+  dom.resultsList.innerHTML = pageResults
+    .map((r) => {
+      const sm = SOURCE_META[r.source] || {
+        label: r.source,
+        letter: "?",
+        color: "#5B9FEF",
+      };
+      const imageUrl = r.meta?.imageUrl || "";
+      if (!imageUrl) return "";
+      return `
+      <div class="image-card fade-in">
+        <img src="${imageUrl}" alt="${escapeHtml(r.title)}" class="scybud-magnify" loading="lazy">
+        <a class="image-card-meta" href="${r.url}" target="_blank" rel="noopener">
+          <span class="favicon" style="background:${sm.color}">${sm.letter}</span>
+          <span class="image-card-title">${escapeHtml(r.title)}</span>
+        </a>
+      </div>`;
+    })
+    .join("");
+
+  dom.resultsList
+    .querySelectorAll("img.scybud-magnify")
+    .forEach((img) => magnifyImg(img));
+}
+
+function renderVideoResults(pageResults) {
+  dom.resultsList.innerHTML = pageResults
+    .map((r) => {
+      const thumb = r.meta?.thumbnail || "";
+      const channel = r.meta?.channel || "";
+      return `
+      <a class="video-card fade-in" href="${r.url}" target="_blank" rel="noopener">
+        <div class="video-thumb-wrap">
+          <img src="${thumb}" alt="${escapeHtml(r.title)}" loading="lazy">
+          <span class="video-play">▶</span>
+        </div>
+        <div class="video-card-body">
+          <div class="video-card-title">${escapeHtml(r.title)}</div>
+          <div class="video-card-channel">${escapeHtml(channel)}</div>
+        </div>
+      </a>`;
+    })
+    .join("");
 }
 
 function renderKnowledgePanel(query) {

@@ -1,4 +1,5 @@
 import { dom } from "./dom.js";
+import { state } from "./state.js";
 import { initTheme } from "./theme.js";
 import { renderTrendingChips } from "./trending.js";
 import { wireSuggestions } from "./suggestions.js";
@@ -27,7 +28,7 @@ dom.pagination.addEventListener("click", (e) => {
 });
 
 dom.resultsInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") runSearch(dom.resultsInput.value, "all");
+  if (e.key === "Enter") runSearch(dom.resultsInput.value, state.tab);
 });
 
 document.addEventListener("keydown", (e) => {
