@@ -182,7 +182,7 @@ function renderKnowledgePanel(query) {
       ${kp.facts.map(([l, v]) => `<div class="kp-fact"><span class="kp-fact-label">${l}</span><span class="kp-fact-value">${v}</span></div>`).join("")}
     </div>
     <div class="kp-links">
-      ${kp.links.map((l) => `<span class="kp-link">${l}</span>`).join("")}
+      ${kp.links.map((l) => `<a href="https://${l}" class="kp-link">${l}</a>`).join("")}
     </div>`;
 }
 

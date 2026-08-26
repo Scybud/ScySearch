@@ -22,7 +22,7 @@ export const KNOWLEDGE = {
       ["Sources", "Stack Overflow, GitHub, MDN, HN, Reddit, Dev.to"],
       ["Stack", "Vanilla JS + Supabase Edge Functions"],
     ],
-    links: ["scybud.com", "GitHub"],
+    links: ["scybud.com", "GitHub.com"],
   },
   scybud: {
     title: "Scybud",
