@@ -100,5 +100,19 @@
   {
     "url": "https://nodejs.org/docs/latest/api/path.html",
     "source": "nodejs-docs"
-  }
+  },
+  { "url": "https://scybud.com", "source": "scybud" },
+  { "url": "https://ui.scybud.com/docs", "source": "scybud" },
+  { "url": "https://loghue.com", "source": "scybud" },
+  { "url": "https://docs.loghue.com", "source": "scybud" },
+  { "url": "https://zefeed.vercel.app", "source": "scybud" },
+  { "url": "https://propdek.scybud.com", "source": "scybud" },
+  { "url": "https://canvart.scybud.com", "source": "scybud" },
+  { "url": "https://dakat.scybud.com", "source": "scybud" },
+  { "url": "https://trytasty.scybud.com", "source": "scybud" },
+  { "url": "https://rushsite.scybud.com", "source": "scybud" },
+  { "url": "https://learn.scybud.com", "source": "scybud" },
+  { "url": "https://learn.scybud.com/html", "source": "scybud" },
+  { "url": "https://search.scybud.com", "source": "scybud" },
+  { "url": "https://scybud.github.io", "source": "scybud" }
 ]
