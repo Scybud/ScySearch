@@ -1,13 +1,8 @@
-import { API_BASE_URL } from "./config.js";
+import { API_BASE_URL, INDEXED_API_URL } from "./config.js";
 
 let activeController = null;
+let indexedController = null;
 
-/**
- * Calls the ScySearch edge function.
- * @param {string} query
- * @param {"all"|"stackoverflow"|"github"|"mdn"} source
- * @returns {Promise<{query: string, count: number, took_ms: number, results: Array}>}
- */
 export async function fetchResults(query, source = "all") {
   if (activeController) activeController.abort();
   activeController = new AbortController();
@@ -24,11 +19,28 @@ export async function fetchResults(query, source = "all") {
     try {
       const body = await res.json();
       if (body.error) message = body.error;
-    } catch {
-      // response wasn't JSON, keep the default message
-    }
+    } catch {}
     throw new Error(message);
   }
 
   return res.json();
+}
+
+export async function fetchIndexedResults(query) {
+  if (indexedController) indexedController.abort();
+  indexedController = new AbortController();
+
+  const params = new URLSearchParams({ q: query });
+
+  try {
+    const res = await fetch(`${INDEXED_API_URL}?${params.toString()}`, {
+      signal: indexedController.signal,
+    });
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data.results || [];
+  } catch (err) {
+    if (err.name === "AbortError") return [];
+    return [];
+  }
 }

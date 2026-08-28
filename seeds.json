@@ -1,0 +1,104 @@
+[
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML/Element",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/API/Promise",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function",
+    "source": "mdn"
+  },
+  {
+    "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment",
+    "source": "mdn"
+  },
+  { "url": "https://react.dev/learn", "source": "react-docs" },
+  {
+    "url": "https://react.dev/learn/thinking-in-react",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/learn/state-a-components-memory",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/learn/synchronizing-with-effects",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/reference/react/useState",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/reference/react/useEffect",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/reference/react/useContext",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/reference/react/useMemo",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/reference/react/useCallback",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/learn/passing-props-to-a-component",
+    "source": "react-docs"
+  },
+  {
+    "url": "https://react.dev/learn/conditional-rendering",
+    "source": "react-docs"
+  },
+  { "url": "https://react.dev/learn/rendering-lists", "source": "react-docs" },
+  {
+    "url": "https://nodejs.org/docs/latest/api/fs.html",
+    "source": "nodejs-docs"
+  },
+  {
+    "url": "https://nodejs.org/docs/latest/api/http.html",
+    "source": "nodejs-docs"
+  },
+  {
+    "url": "https://nodejs.org/docs/latest/api/path.html",
+    "source": "nodejs-docs"
+  }
+]

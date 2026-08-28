@@ -814,3 +814,34 @@ button {
   font-size: 12px;
   color: var(--text-secondary);
 }
+
+.indexed-panel {
+  margin-bottom: 16px;
+  padding: 16px;
+  border: 1px solid var(--border-primary);
+  border-radius: 10px;
+  background: var(--surface-primary);
+}
+.indexed-panel-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.indexed-result {
+  display: block;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-primary);
+  text-decoration: none;
+}
+.indexed-result:last-child {
+  border-bottom: none;
+}
+.indexed-result-title {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+.indexed-result-url {
+  color: var(--text-secondary);
+  font-size: 12px;
+}

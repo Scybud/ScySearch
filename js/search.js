@@ -1,7 +1,13 @@
 import { dom } from "./dom.js";
 import { state, resetForNewSearch } from "./state.js";
-import { fetchResults } from "./api.js";
-import { renderResults, renderLoading, renderError, setStats } from "./results.js";
+import { fetchResults, fetchIndexedResults } from "./api.js";
+import {
+  renderResults,
+  renderLoading,
+  renderError,
+  setStats,
+  renderIndexedPanel,
+} from "./results.js";
 import { TRENDING } from "./trending.js";
 
 export function goHome() {
@@ -24,7 +30,9 @@ export async function runSearch(query, tab = "all") {
   resetForNewSearch(query);
   state.tab = tab;
 
-  document.querySelectorAll(".tab").forEach((t) => t.classList.toggle("active", t.dataset.tab === tab));
+  document
+    .querySelectorAll(".tab")
+    .forEach((t) => t.classList.toggle("active", t.dataset.tab === tab));
 
   dom.homeWrap.classList.add("hidden");
   dom.resultsWrap.classList.add("show");
@@ -37,10 +45,15 @@ export async function runSearch(query, tab = "all") {
 
   state.loading = true;
   renderLoading();
+  dom.indexedPanel.style.display = "none";
+
+  fetchIndexedResults(query).then((indexed) => {
+    if (state.query === query) renderIndexedPanel(indexed);
+  });
 
   try {
     const data = await fetchResults(query, tab);
-    if (state.query !== query) return; // a newer search already superseded this one
+    if (state.query !== query) return;
     state.results = data.results || [];
     state.loading = false;
     setStats(data.count ?? state.results.length, data.took_ms ?? 0);

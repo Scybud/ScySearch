@@ -186,6 +186,26 @@ function renderKnowledgePanel(query) {
     </div>`;
 }
 
+export function renderIndexedPanel(results) {
+  if (!results.length) {
+    dom.indexedPanel.style.display = "none";
+    dom.indexedPanel.innerHTML = "";
+    return;
+  }
+  dom.indexedPanel.style.display = "block";
+  dom.indexedPanel.innerHTML = `
+    <div class="indexed-panel-title">From Scybud's indexed docs</div>
+    ${results
+      .map(
+        (r) => `
+      <a href="${r.url}" target="_blank" rel="noopener" class="indexed-result">
+        <div class="indexed-result-title">${escapeHtml(r.title)}</div>
+        <div class="indexed-result-url">${escapeHtml(r.url)}</div>
+      </a>`,
+      )
+      .join("")}`;
+}
+
 function renderPagination(totalPages) {
   if (totalPages <= 1) {
     dom.pagination.innerHTML = "";

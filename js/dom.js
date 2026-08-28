@@ -14,6 +14,7 @@ export const dom = {
   resultsList: document.getElementById("resultsList"),
   resultStats: document.getElementById("resultStats"),
   knowledgePanel: document.getElementById("knowledgePanel"),
+  indexedPanel: document.getElementById("indexedPanel"),
   pagination: document.getElementById("pagination"),
   themeToggle: document.getElementById("themeToggle"),
   feelingLuckyBtn: document.getElementById("feelingLuckyBtn"),
