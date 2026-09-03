@@ -5,6 +5,7 @@ export const state = {
   results: [],
   loading: false,
   error: null,
+  requestId: 0,
 };
 
 export function resetForNewSearch(query) {

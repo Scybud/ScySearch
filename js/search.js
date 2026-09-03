@@ -29,6 +29,7 @@ export async function runSearch(query, tab = "all") {
 
   resetForNewSearch(query);
   state.tab = tab;
+  const requestId = ++state.requestId;
 
   document
     .querySelectorAll(".tab")
@@ -48,18 +49,19 @@ export async function runSearch(query, tab = "all") {
   dom.indexedPanel.style.display = "none";
 
   fetchIndexedResults(query).then((indexed) => {
-    if (state.query === query) renderIndexedPanel(indexed);
+    if (state.requestId === requestId) renderIndexedPanel(indexed);
   });
 
   try {
     const data = await fetchResults(query, tab);
-    if (state.query !== query) return;
+    if (state.requestId !== requestId) return;
     state.results = data.results || [];
     state.loading = false;
     setStats(data.count ?? state.results.length, data.took_ms ?? 0);
     renderResults();
   } catch (err) {
-    if (err.name === "AbortError") return;
+    if (err.name === "AbortError") return console.log("aborted:", tab);
+    if (state.requestId !== requestId) return;
     state.loading = false;
     state.error = err.message;
     renderError(err.message);
